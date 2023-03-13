@@ -1,1 +1,2 @@
-# secretary_app
+# secretary_app プルリク
+# プルリクアプリ
