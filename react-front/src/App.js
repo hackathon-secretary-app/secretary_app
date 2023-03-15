@@ -119,7 +119,7 @@ import { useState } from "react";
               name="title"
               value={title}
               placeholder="Todoリスト"
-              style={{ width: "200px" }}
+              style={{ width: "400px" }}
               onChange={(e) => titleChange(e)}
               required
             ></input>
@@ -142,7 +142,7 @@ import { useState } from "react";
               name="deadline"
               value={deadline}
               placeholder="締切日を選択してください。"
-              style={{ width: "200px" }}
+              style={{ width: "400px" }}
               onChange={(e) => deadlineChange(e)}
               required
             ></input>
