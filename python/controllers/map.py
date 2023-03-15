@@ -1,5 +1,4 @@
 import sys
-from sqlalchemy.orm import Session
 #導入する関数，処理を定義する
 
 def get_test():

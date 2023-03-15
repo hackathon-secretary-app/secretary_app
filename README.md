@@ -1,2 +1,2 @@
-# secretary_app プルリク
-# プルリクアプリ
+# secretary_app 
+# todo
