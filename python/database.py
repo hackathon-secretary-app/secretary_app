@@ -1,4 +1,6 @@
 #sqlalchemyの設定なので基本使いません．
+import sys
+sys.dont_write_bytecode = True
 
 from config.env import USER_NAME,PASSWORD,HOST,DB_NAME
 from sqlalchemy import create_engine
