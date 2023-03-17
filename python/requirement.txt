@@ -1,0 +1,5 @@
+#pipでインストールするパッケージ内容
+fastapi
+uvicorn
+sqlalchemy
+requests

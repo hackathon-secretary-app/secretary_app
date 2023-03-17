@@ -3,6 +3,6 @@
 # 接続したいDBへの接続情報
 USER_NAME = 'root'
 PASSWORD = 'GYkkbMx2t635'
-HOST = "127.0.0.1"
-DB_NAME = "mysql"
+HOST = "localhost:3306"
+DB_NAME = "test_db"
 
