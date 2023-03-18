@@ -56,3 +56,20 @@ with connection:
     ※update,insert,deleteなどDB内の情報を変化させる場合は，以下のコミットが必要
     
 /////////////////////////////////
+
+### MySQL構築手順
+    [windowsの方](https://prog-8.com/docs/mysql-env-win)
+    [macの方](https://prog-8.com/docs/mysql-env)
+    これらの手順通りに進めてください
+    
+    ※注意
+    -コマンドプロンプトを管理者として実行してください
+
+
+
+
+
+
+
+
+
