@@ -1,38 +1,129 @@
 .App {
   text-align: center;
+  width: 100%;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* heder関連 */
+header{
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #2d445d;
   color: white;
+  width: 100%;
+  height: 60px;
+  font: sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.app-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+}
+.app-title .logo{
+  flex: 70%;
+}
+.app-title .memu-bar{
+  flex: 30%;
+}
+.app-title .memu-bar:hover{
+  color: gray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.logo h3{
+  font-size: 30px;
+}
+
+nav{
+  width: 60%;
+  text-align: left;
+}
+
+nav ul li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 40px;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s;
+  font-size: large;
+}
+nav ul li a:hover{
+  color: gray;
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+
+/* sidebar関連 */
+
+.sidebar{
+  height: 100%;
+  width: 250px;
+  background: gray;
+  animation: fadeIn 500ms linear both;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+.sidebarlist{
+  height: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebarlist .row{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebarlist .row:hover{
+  background-color: #3b627a;
+  cursor: pointer;
+}
+
+.sidebarlist #active{
+  background-color: #3b627a;
+}
+
+.row #title{
+  flex: 70%;
+}
+.row #icon{
+  flex: 30%;
+}
+
+.menu{
+  width: 30%;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.menu:hover{
+  background-color: #3b627a;
+  cursor: pointer;
 }
