@@ -15,8 +15,8 @@ function App() {
   }
 
   async function test_get(){
-    const header = {'Content-Type': 'application/json'}
-    axios.get("http://localhost:8000/",{'Content-Type': 'application/x-www-form-urlencoded'}).then(function(res){
+    const header = {'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}
+    axios.get("http://localhost:8000",header).then(function(res){
       console.log(res);
     })
   }
