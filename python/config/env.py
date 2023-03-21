@@ -2,7 +2,7 @@
 
 # 接続したいDBへの接続情報
 USER_NAME = 'root'
-PASSWORD = 'GYkkbMx2t635'
+PASSWORD = 'root'
 HOST = "localhost:3306"
 DB_NAME = "test_db"
 

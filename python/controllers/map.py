@@ -9,11 +9,7 @@ from mysql import connection
 def get_dbinfo():
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM M_Test"
-            cursor.execute(sql)
-            result = cursor.fetchall()
-            print(result)
-            return result
+            return ("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     finally:
         cursor.close()  
 
