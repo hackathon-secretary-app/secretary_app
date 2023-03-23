@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Form, FastAPI, Query, Hea
 router = APIRouter()
 
 @router.get("/")
-async def root(db: Session = Depends(get_db)):
+async def root():
  return ctl.get_dbinfo()
 
 # ユーザーの登録
@@ -17,7 +17,7 @@ async def create_user():
 # ユーザー情報の取得
 @router.get("/users/{user_id}")
 async def get_user(user_id: int):
-    pass
+    return ctl.get_user_by_id(user_id)
 
 # ユーザー情報の更新
 @router.put("/users/{user_id}")
@@ -37,7 +37,7 @@ async def login():
 # todoリストの取得
 @router.get("/users/{user_id}/todos")
 async def get_todos(user_id: int):
-    pass
+    return  ctl.get_todolist_by_id(user_id)
 
 # 新しいtodoリストの作成
 @router.post("/users/{user_id}/todos")
@@ -57,7 +57,7 @@ async def delete_todo_list(user_id: int, todo_id: int):
 # todoアイテムの取得
 @router.get("/users/{user_id}/todos/{id}/items")
 async def get_todo_item(user_id: int, id: int):
-    pass
+    return ctl.get_todoitem_by_id(id)
 
 # 新しいtodoアイテムの作成
 @router.post("/users/{user_id}/todos/{id}/items")
