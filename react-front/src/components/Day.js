@@ -20,8 +20,8 @@ export const Day = (props) => {
     const events = registedEvents.filter(
       evt => {
         // const evtDay = dayjs(evt.day).format("DD-MM-YY");
-        const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
-        const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
+        const evtStartDate = dayjs(evt.start_datetime).format("DD-MM-YY");
+        const evtDeadlineDate = dayjs(evt.deadline_datetime).format("DD-MM-YY");
         const dayFormatted = day.format("DD-MM-YY");
         return evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
       }
@@ -57,7 +57,7 @@ export const Day = (props) => {
                     <div className="flex justify-between">
                         <div className="w-5/6">
                             <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-gray-600 text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left">
-                                {evt.title}
+                                {evt.task_name}
                             </p>
                         </div>
                         <div className="flex items-center">
