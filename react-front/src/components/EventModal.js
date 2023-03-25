@@ -11,6 +11,8 @@ export const EventModal = () => {
   const [deadline_date, setDeadline] = useState(selectedEvent ? selectedEvent.deadline_date : daySelected.format("YYYY-MM-DD"));
   const [completion_flag, setCompletion] = useState(selectedEvent ? selectedEvent.completion_flag : false);
 
+  const formRef = useRef(null);
+
   const handleSubmit = (e) => {
     // クリック時に送信するというdefaultの動作をキャンセルする
     e.preventDefault();
@@ -41,9 +43,19 @@ export const EventModal = () => {
     })
   }
 
+  const handleDelete = () => {
+    if (!formRef.current.reportValidity()) {
+      setShowEventModal(false);
+      return;
+    }
+    dispatchCalEvent({ type: "delete", payload: selectedEvent });
+    setShowEventModal(false);
+  };
+
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center text-left">
         <form
+            ref={formRef}
             className="bg-white rounded-lg shadow-2xl w-1/4"
             onSubmit={handleSubmit}
             onKeyDown={(e) => {
@@ -56,16 +68,6 @@ export const EventModal = () => {
 
         <header className="bg-gray-100 px-4 py-2 flex justify-end">
           <div className="text-gray-400">
-            {selectedEvent && (
-              <button
-                onClick={() => {
-                  dispatchCalEvent({ type: "delete", payload: selectedEvent });
-                  setShowEventModal(false);
-                }}
-              >
-                <MdDeleteForever />
-              </button>
-            )}
             <button onClick={() => setShowEventModal(false)}>
               <MdClose />
             </button>
@@ -129,12 +131,20 @@ export const EventModal = () => {
             </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
-          >
-            Save
-          </button>
+            <button
+                type="button"
+                className="bg-red-400 hover:bg-red-600 px-6 py-2 rounded text-white"
+                onClick={handleDelete}
+            >
+                Delete
+            </button>
+            <div className="mx-2"></div>
+            <button
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-800 px-10 py-4 rounded text-white font-bold"
+            >
+                Save
+            </button>
         </footer>
       </form>
     </div>
