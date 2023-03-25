@@ -5,7 +5,7 @@ import GlobalContext from "../context/GlobalContext";
 export const Day = (props) => {
   const { day, rowIdx } = props;
   const [dayEvents, setDayEvents] = useState([]);
-  const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent } =
+  const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent, registedEvents, setRegistedEvent } =
     useContext(GlobalContext);
 
   // 今日の日付を色付けする
@@ -17,13 +17,13 @@ export const Day = (props) => {
 
   // 登録データを日付が一致する日に表示
   useEffect(() => {
-    const events = savedEvents.filter(
+    const events = registedEvents.filter(
       evt => {
-        const evtDay = dayjs(evt.day).format("DD-MM-YY");
+        // const evtDay = dayjs(evt.day).format("DD-MM-YY");
         const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
         const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
         const dayFormatted = day.format("DD-MM-YY");
-        return evtDay === dayFormatted || evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
+        return evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
       }
     );
     setDayEvents(events);
