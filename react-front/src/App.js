@@ -8,7 +8,6 @@ import { useState, useEffect, useContext } from "react";
 
 import { getMonth } from "./util";
 import { CalendarHeader } from "./components/CalendarHeader";
-import { CalendarSidebar } from "./components/CalendarSidebar.js";
 import { Month } from "./components/Month";
 import GlobalContext from "./context/GlobalContext";
 import { EventModal } from "./components/EventModal";
@@ -47,7 +46,6 @@ function App() {
         <div className="h-screen flex flex-col">
           <CalendarHeader />
           <div className="flex flex-1">
-            <CalendarSidebar />
             <Month month={currentMonth} />
           </div>
         </div>
