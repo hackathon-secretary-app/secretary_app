@@ -1,5 +1,6 @@
-import React, { useState, useContext, useRef } from "react";
-import { MdClose } from "react-icons/md";
+import axios from "axios";
+import React, { useState, useContext } from "react";
+import { MdDeleteForever, MdClose } from "react-icons/md";
 import GlobalContext from "../context/GlobalContext";
 
 export const EventModal = () => {
@@ -20,16 +21,27 @@ export const EventModal = () => {
         start_date: start_date,
         deadline_date: deadline_date,
         completion_flag: completion_flag,
-        day: daySelected.valueOf(),
-        id: selectedEvent ? selectedEvent.id : Date.now(),
+        // day: daySelected.valueOf(),
+        // id: selectedEvent ? selectedEvent.id : Date.now(),
       };
-    if (selectedEvent) {
-      dispatchCalEvent({ type: "update", payload: calendarEvent });
-    } else {
-      dispatchCalEvent({ type: "push", payload: calendarEvent });
-    }
+    // if (selectedEvent) {
+    //   dispatchCalEvent({ type: "update", payload: calendarEvent });
+    // } else {
+    //   dispatchCalEvent({ type: "push", payload: calendarEvent });
+    // }
+
+    // ここで通信処理を行う
+    console.log(calendarEvent)
+    regist_items(calendarEvent)
+    
     setShowEventModal(false);
   };
+  async function regist_items(todo_items){
+    const baseURL = "http://localhost:8000/users/1/todos/1/items"
+    axios.post(baseURL,todo_items).then((res)=>{
+      console.log(res)
+    })
+  }
 
   const handleDelete = () => {
     if (!formRef.current.reportValidity()) {
