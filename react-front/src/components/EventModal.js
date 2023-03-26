@@ -79,6 +79,7 @@ export const EventModal = () => {
                     type="date"
                     name="開始日"
                     value={start_date}
+                    required
                     className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                     onChange={(e) => setStart(e.target.value)}
                 />
@@ -90,6 +91,7 @@ export const EventModal = () => {
                     type="date"
                     name="期限日"
                     value={deadline_date}
+                    required
                     className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                     onChange={(e) => setDeadline(e.target.value)}
                 />

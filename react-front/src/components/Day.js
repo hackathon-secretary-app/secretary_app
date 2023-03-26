@@ -34,9 +34,9 @@ export const Day = (props) => {
     const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
     const dayFormatted = day.format("DD-MM-YY");
     if (evtDeadlineDate === dayFormatted) {
-      return "bg-red-200";
+      return "bg-red-100";
     } else if (evtStartDate === dayFormatted) {
-      return "bg-blue-200";
+      return "bg-blue-100";
     } else {
       return "";
     }
