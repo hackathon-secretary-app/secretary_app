@@ -49,6 +49,24 @@ def get_month(user_id, todo_id,start_date,end_date):
             return result
     finally:
         cursor.close()
+        
+#今日のタスクの取得
+def get_today(user_id, todo_id,start_date,end_date):
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT task_name FROM T_Task "
+            sql+= "WHERE "
+            # sql+=f" creator_id={user_id} AND todo_id={todo_id} AND "
+            sql+=f" (start_datetime <= '{start_date}' AND '{end_date}' <= deadline_datetime) AND"
+            sql+=f" (completion_flag = 0)"
+            print(sql)
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            print(result)
+            return result
+    finally:
+        cursor.close()
+
 #DBの情報を取得する
 #def get_database(db:Session):
 #    db.query()
