@@ -1,7 +1,6 @@
 import './App.css';
 import SideBar from './components/SideBar'
-import Header from './components/Header'
-//import {useState} from "react"
+import Header from './components/Header.tsx'
 import axios from "axios";
 
 import { useState, useEffect, useContext } from "react";
@@ -39,7 +38,7 @@ function App() {
   test_get()
   return (
     <div className="App">
-      <Header changeState={changeState} state={state} />
+      <Header/>
       {state && <SideBar state={state} />}
       <>
         {showEventModal && <EventModal />}
