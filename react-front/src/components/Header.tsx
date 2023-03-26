@@ -91,13 +91,13 @@ const Header = () => {
     <header>
         <div className='App-header'>
             <div className='logo'>
-                <h1>
+                <h1 style={{ fontSize: "2em", fontWeight: "bold" }}>
                     君だけのずんだもん
                 </h1>
             </div>
         </div>
         <nav>
-            <button onClick={zundamon}>今日のタスク</button>
+            <button style={{ fontSize: "1.5em" }} onClick={zundamon}>今日のタスク</button>
         </nav>
     </header>
   )
