@@ -91,8 +91,16 @@ async def add_shared_user(todo_id: int):
 async def add_shared_user(todo_id: int):
     pass
 
+#今月のタスクの取得
 @router.get("/users/{user_id}/todos/{todo_id}/calender")
 async def get_month_Calendar(user_id: int, todo_id: int,start_date :str,end_date:str):
     print(start_date)
     print(end_date)
     return ctl.get_month(user_id,todo_id,start_date,end_date)
+
+#今日のタスクの取得
+@router.get("/users/{user_id}/todos/{todo_id}/today")
+async def get_today_task(user_id: int, todo_id: int,start_date: str, end_date: str):
+    print(start_date)
+    print(end_date)
+    return ctl.get_today(user_id,todo_id,start_date,end_date)
