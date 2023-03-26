@@ -19,43 +19,62 @@ export const Day = (props) => {
   useEffect(() => {
     const events = savedEvents.filter(
       evt => {
-        const evtDay = dayjs(evt.day).format("DD-MM-YY");
         const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
         const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
         const dayFormatted = day.format("DD-MM-YY");
-        return evtDay === dayFormatted || evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
+        return evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
       }
     );
     setDayEvents(events);
   }, [savedEvents, day]);
 
+  // start_date, deadline_dateに応じてクラスを返す関数
+  const getEventClass = (evt) => {
+    const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
+    const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
+    const dayFormatted = day.format("DD-MM-YY");
+    if (evtDeadlineDate === dayFormatted) {
+      return "bg-red-200";
+    } else if (evtStartDate === dayFormatted) {
+      return "bg-blue-200";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div className="border-2 border-gray-300 flex flex-col">
-        <div className={`flex flex-col items-center ${day.day() === 6 ? 'bg-blue-300' : day.day() === 0 ? 'bg-red-300' : 'bg-gray-300'}`}>
-            {/* 1行目に曜日を表示 */}
-            {rowIdx === 0 && <p className="text-sm mt-1">{day.format("ddd")}</p>}
-        </div>
+      <div
+        className={`flex flex-col items-center ${
+          day.day() === 6 ? "bg-blue-300" : day.day() === 0 ? "bg-red-300" : "bg-gray-300"
+        }`}
+      >
+        {/* 1行目に曜日を表示 */}
+        {rowIdx === 0 && <p className="text-sm mt-1">{day.format("ddd")}</p>}
+      </div>
 
-        <div className="flex flex-col items-center">
-            <p className={`text-sm p-1 my-1 text-center" ${getCurrentDayClass()}`}>
-                {day.format("DD")}
-            </p>
-        </div>
-        <div
-            className="flex-1 cursor-pointer"
-            onClick={() => {
-                setDaySelected(day);
-                setShowEventModal(true);
-            }}
-        >
-            {dayEvents.map((evt, idx) => (
-                <div
-                    key={idx}
-                    onClick={() => setSelectedEvent(evt)}
-                    className={`bg-neutral-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
-                >
-                    <div className="flex justify-between">
-                        <div className="w-5/6">
+      <div className="flex flex-col items-center">
+        <p className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}>
+          {day.format("DD")}
+        </p>
+      </div>
+      <div
+        className="flex-1 cursor-pointer"
+        onClick={() => {
+          setDaySelected(day);
+          setShowEventModal(true);
+        }}
+      >
+        {dayEvents.map((evt, idx) => (
+          <div
+            key={idx}
+            onClick={() => setSelectedEvent(evt)}
+            className={`p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate ${getEventClass(
+              evt
+            )}`}
+          >
+            <div className="flex justify-between">
+              <div className="w-5/6">
                             <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-gray-600 text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left">
                                 {evt.title}
                             </p>

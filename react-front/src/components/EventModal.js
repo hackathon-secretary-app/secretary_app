@@ -41,7 +41,7 @@ export const EventModal = () => {
   };
 
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center text-left">
+    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center text-left max-h-screen overflow-y-scroll">
         <form
             ref={formRef}
             className="bg-white rounded-lg shadow-2xl w-1/4"
@@ -95,13 +95,6 @@ export const EventModal = () => {
                 />
                 </div>
 
-                <div>
-                    <p>登録者   {}</p>
-                    <p>更新者   {}</p>
-                </div>
-
-                
-
                 <p className="flex items-center">
                     <input
                         type="checkbox" 
@@ -112,17 +105,14 @@ export const EventModal = () => {
                     />
                     <span className="text-gray-600 text-xl font-semibold">済</span>
                 </p>
-
-                
-
-                <p>{daySelected.format("dddd, MMMM DD")}</p>
             </div>
         </div>
-        <footer className="flex justify-end border-t p-3 mt-5">
+        <footer className="flex justify-end border-t p-3 mt-5 flex-wrap">
             <button
                 type="button"
                 className="bg-red-400 hover:bg-red-600 px-6 py-2 rounded text-white"
                 onClick={handleDelete}
+                style={{ minWidth: "8rem" }}
             >
                 Delete
             </button>
@@ -130,6 +120,7 @@ export const EventModal = () => {
             <button
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-800 px-10 py-4 rounded text-white font-bold"
+                style={{ minWidth: "8rem" }}
             >
                 Save
             </button>
