@@ -32,6 +32,8 @@ const ContextWrapper = (props) => {
     [],
     initEvents
   );
+  const [registedEvents, setRegistedEvent] = useState([])
+  
 
   useEffect(() => {
     // 以下構文でlocalStorageに保存
@@ -58,6 +60,8 @@ const ContextWrapper = (props) => {
         setSelectedEvent,
         dispatchCalEvent,
         savedEvents,
+        registedEvents,
+        setRegistedEvent,
       }}
     >
       {props.children}

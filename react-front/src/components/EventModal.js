@@ -6,11 +6,10 @@ import GlobalContext from "../context/GlobalContext";
 export const EventModal = () => {
   const { daySelected, setShowEventModal, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
-  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
-  const [start_date, setStart] = useState(selectedEvent ? selectedEvent.start_date : daySelected.format("YYYY-MM-DD"));
-  const [deadline_date, setDeadline] = useState(selectedEvent ? selectedEvent.deadline_date : daySelected.format("YYYY-MM-DD"));
+  const [title, setTitle] = useState(selectedEvent ? selectedEvent.task_name : "");
+  const [start_date, setStart] = useState(selectedEvent ? selectedEvent.start_datetime : daySelected.format("YYYY-MM-DD"));
+  const [deadline_date, setDeadline] = useState(selectedEvent ? selectedEvent.deadline_datetime : daySelected.format("YYYY-MM-DD"));
   const [completion_flag, setCompletion] = useState(selectedEvent ? selectedEvent.completion_flag : false);
-
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {

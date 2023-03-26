@@ -29,14 +29,6 @@ function App() {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
 
-  
-  async function test_get(){
-    const header = {'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}
-    axios.get("http://localhost:8000",header).then(function(res){
-      console.log(res);
-    })
-  }
-  test_get()
   return (
     <div className="App">
       <Header changeState={changeState} state={state} />
