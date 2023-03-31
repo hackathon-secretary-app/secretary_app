@@ -5,7 +5,7 @@ import GlobalContext from "../context/GlobalContext";
 export const Day = (props) => {
   const { day, rowIdx } = props;
   const [dayEvents, setDayEvents] = useState([]);
-  const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent } =
+  const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent, registedEvents, setRegistedEvent } =
     useContext(GlobalContext);
 
   // 今日の日付を色付けする
@@ -17,21 +17,21 @@ export const Day = (props) => {
 
   // 登録データを日付が一致する日に表示
   useEffect(() => {
-    const events = savedEvents.filter(
+    const events = registedEvents.filter(
       evt => {
-        const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
-        const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
+        const evtStartDate = dayjs(evt.start_datetime).format("DD-MM-YY");
+        const evtDeadlineDate = dayjs(evt.deadline_datetime).format("DD-MM-YY");
         const dayFormatted = day.format("DD-MM-YY");
         return evtStartDate === dayFormatted || evtDeadlineDate === dayFormatted;
       }
     );
     setDayEvents(events);
-  }, [savedEvents, day]);
+  }, [registedEvents, day]);
 
-  // start_date, deadline_dateに応じてクラスを返す関数
+  // start_datetime, deadline_datetimeに応じてクラスを返す関数
   const getEventClass = (evt) => {
-    const evtStartDate = dayjs(evt.start_date).format("DD-MM-YY");
-    const evtDeadlineDate = dayjs(evt.deadline_date).format("DD-MM-YY");
+    const evtStartDate = dayjs(evt.start_datetime).format("DD-MM-YY");
+    const evtDeadlineDate = dayjs(evt.deadline_datetime).format("DD-MM-YY");
     const dayFormatted = day.format("DD-MM-YY");
     if (evtDeadlineDate === dayFormatted) {
       return "bg-red-100";
@@ -42,11 +42,12 @@ export const Day = (props) => {
     }
   };
 
+
   return (
     <div className="border-2 border-gray-300 flex flex-col">
       <div
         className={`flex flex-col items-center ${
-          day.day() === 6 ? "bg-blue-300" : day.day() === 0 ? "bg-red-300" : "bg-gray-300"
+          day.day() === 6 ? 'bg-blue-300' : day.day() === 0 ? 'bg-red-300' : 'bg-gray-300'
         }`}
       >
         {/* 1行目に曜日を表示 */}
@@ -73,23 +74,28 @@ export const Day = (props) => {
               evt
             )}`}
           >
-            <div className="flex justify-between">
-              <div className="w-5/6">
-                            <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-gray-600 text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left">
-                                {evt.title}
-                            </p>
-                        </div>
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="completion"
-                                checked={evt.completion_flag}
-                                required
-                                onChange={(e) => evt.setCompletion(e.target.checked)}
-                            />
-                            <span>済</span>
-                        </div>
-                    </div>
+            <div className="flex items-center justify-between w-full">
+  <div className="w-4/5">
+    <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-gray-600 text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left">
+      {evt.task_name}
+    </p>
+  </div>
+  <div className="flex items-center w-1/5">
+    <label htmlFor={`completion-${evt.id}`} className="cursor-pointer flex items-center">
+      <input
+        id={`completion-${evt.id}`}
+        type="checkbox"
+        name={`completion-${evt.id}`}
+        checked={evt.completion_flag}
+        required
+        onChange={(e) => evt.setCompletion(e.target.checked)}
+        className="mr-2"
+      />
+      <span className="text-sm">済</span>
+    </label>
+  </div>
+</div>
+
                 </div>
             ))}
         </div>

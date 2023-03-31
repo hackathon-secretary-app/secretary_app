@@ -1,6 +1,5 @@
 import React from 'react'
 import {SideBarList} from './SideBarData'
-import SideBarImg from './SideBarImg'
 
 function SideBar(props) {
   

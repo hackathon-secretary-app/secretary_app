@@ -1,15 +1,15 @@
+import axios from "axios";
 import React, { useState, useContext, useRef } from "react";
-import { MdClose } from "react-icons/md";
+import { MdDeleteForever, MdClose } from "react-icons/md";
 import GlobalContext from "../context/GlobalContext";
 
 export const EventModal = () => {
   const { daySelected, setShowEventModal, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
-  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
-  const [start_date, setStart] = useState(selectedEvent ? selectedEvent.start_date : daySelected.format("YYYY-MM-DD"));
-  const [deadline_date, setDeadline] = useState(selectedEvent ? selectedEvent.deadline_date : daySelected.format("YYYY-MM-DD"));
+  const [title, setTitle] = useState(selectedEvent ? selectedEvent.task_name : "");
+  const [start_date, setStart] = useState(selectedEvent ? selectedEvent.start_datetime : daySelected.format("YYYY-MM-DD"));
+  const [deadline_date, setDeadline] = useState(selectedEvent ? selectedEvent.deadline_datetime : daySelected.format("YYYY-MM-DD"));
   const [completion_flag, setCompletion] = useState(selectedEvent ? selectedEvent.completion_flag : false);
-
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -20,16 +20,27 @@ export const EventModal = () => {
         start_date: start_date,
         deadline_date: deadline_date,
         completion_flag: completion_flag,
-        day: daySelected.valueOf(),
-        id: selectedEvent ? selectedEvent.id : Date.now(),
+        // day: daySelected.valueOf(),
+        // id: selectedEvent ? selectedEvent.id : Date.now(),
       };
-    if (selectedEvent) {
-      dispatchCalEvent({ type: "update", payload: calendarEvent });
-    } else {
-      dispatchCalEvent({ type: "push", payload: calendarEvent });
-    }
+    // if (selectedEvent) {
+    //   dispatchCalEvent({ type: "update", payload: calendarEvent });
+    // } else {
+    //   dispatchCalEvent({ type: "push", payload: calendarEvent });
+    // }
+
+    // ここで通信処理を行う
+    console.log(calendarEvent)
+    regist_items(calendarEvent)
+    
     setShowEventModal(false);
   };
+  async function regist_items(todo_items){
+    const baseURL = "http://localhost:8000/users/1/todos/1/items"
+    axios.post(baseURL,todo_items).then((res)=>{
+      console.log(res)
+    })
+  }
 
   const handleDelete = () => {
     if (!formRef.current.reportValidity()) {
@@ -107,6 +118,7 @@ export const EventModal = () => {
                     />
                     <span className="text-gray-600 text-xl font-semibold">済</span>
                 </p>
+
             </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5 flex-wrap">
@@ -123,6 +135,7 @@ export const EventModal = () => {
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-800 px-10 py-4 rounded text-white font-bold"
                 style={{ minWidth: "8rem" }}
+                onClick={() => window.location.reload(false)}
             >
                 Save
             </button>
