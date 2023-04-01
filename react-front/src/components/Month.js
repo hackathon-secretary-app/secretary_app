@@ -4,22 +4,23 @@ import axios from "axios";
 import GlobalContext from "../context/GlobalContext";
 
 export const Month = (props) => {
-  const { registedEvents, setRegistedEvent } = 
+  const { registedEvents, setRegistedEvent, showEventModal } = 
     useContext(GlobalContext);
-  const { month } = props;
-  const [flag, setFlag] = useState(true);
-
+  const { month, active_api } = props;
+  const [flag, setFlag] = useState(active_api);
 
   const start_date = String(month[0][0]['$y']) + '-' + ("0" + (month[0][0]['$M']+1)).slice(-2) + '-' + ("0" + month[0][0]['$D']).slice(-2)
   const end_date = String(month[4][6]['$y']) + '-' + ("0" + (month[4][6]['$M']+1)).slice(-2) + '-' + ("0" + month[4][6]['$D']).slice(-2)
 
+
   useEffect(()=>{
-    console.log("実行")
     get_current_month()
   }, []);
-  if (flag){
-    get_current_month()
-  }
+  useEffect(()=>{
+    if(!showEventModal){
+      get_current_month()
+    }
+  },[showEventModal])
 
   function get_current_month(){
     const baseURL = "http://localhost:8000/users/1/todos/1/calender";
@@ -37,7 +38,6 @@ export const Month = (props) => {
       })
       setRegistedEvent(registed_data)
       setFlag(false)
-      
     })
   }
   return (

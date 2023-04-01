@@ -10,6 +10,9 @@ import { CalendarHeader } from "./components/CalendarHeader";
 import { Month } from "./components/Month";
 import GlobalContext from "./context/GlobalContext";
 import { EventModal } from "./components/EventModal";
+import { BrowserRouter, Route } from 'react-router-dom';
+import Login from './views/Login';
+import Calender from './views/Calender';
 
 function App() {
    //useStateでデータを定義。初期値をfalseに
@@ -21,25 +24,25 @@ function App() {
   }
 
   //
-  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  
   const { monthIndex, showEventModal } = useContext(GlobalContext);
+  const [active_api, setActiveAPI ] = useState(true);
 
-  useEffect(() => {
-    setCurrentMonth(getMonth(monthIndex));
-  }, [monthIndex]);
+  useEffect(() => {;
+  }, []);
 
   return (
     <div className="App">
+      {/* <BrowserRouter>
+        <Route path="/" components={Login} />
+          <Login />
+      </BrowserRouter> */}
+      
       <Header/>
       {state && <SideBar state={state} />}
       <>
         {showEventModal && <EventModal />}
-        <div className="h-screen flex flex-col">
-          <CalendarHeader />
-          <div className="flex flex-1">
-            <Month month={currentMonth} />
-          </div>
-        </div>
+        < Calender />
       </>
     </div>
     
