@@ -134,6 +134,8 @@ export const EventModal = () => {
             <button
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-800 px-10 py-4 rounded text-white font-bold"
+                style={{ minWidth: "8rem" }}
+                onClick={() => window.location.reload(false)}
             >
                 Save
             </button>
