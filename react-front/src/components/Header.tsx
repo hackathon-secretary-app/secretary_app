@@ -91,7 +91,13 @@ const Header = () => {
     }
 
     return (
-        <header>
+        <header style={{
+            backgroundColor: "#44bc3c",
+            color: "#44bc3c",
+            WebkitTextStroke: "1px #ffffff",
+            strokeWidth: "1px",
+            stroke: "#FFF"
+        }}>
             <div className='App-header'>
                 <div className='logo'>
                     <h1 style={{ fontSize: "2em", fontWeight: "bold" }}>
