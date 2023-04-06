@@ -65,9 +65,9 @@ export const EventModal = () => {
             }}
         >
 
-        <header className="bg-gray-100 px-4 py-2 flex justify-end">
-          <div className="text-gray-400">
-            <button onClick={() => setShowEventModal(false)}>
+        <header className="bg-[#44bc3c] px-4 py-2 flex justify-end">
+          <div className="text-white ">
+            <button onClick={() => setShowEventModal(false)} className="text-lg">
               <MdClose />
             </button>
           </div>
@@ -79,49 +79,50 @@ export const EventModal = () => {
                     placeholder="Add task" 
                     value={title} 
                     required 
-                    className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 break-words" 
+                    className="pt-3 border-0 text-[#44bc3c] text-xl font-semibold pb-2 w-full border-b-2 border-[#bfff7f] focus:outline-none focus:ring-0 focus:border-[#44bc3c] break-words placeholder-[#bfff7f]" 
                     style={{ overflowWrap: "break-word", whiteSpace: "normal" }} 
                     onChange={(e) => setTitle(e.target.value)} 
                 />
 
                 <div>
-                <p>開始日</p>
+                <p className="text-[#44bc3c] ">開始日</p>
                 <input
                     type="date"
                     name="開始日"
                     value={start_date}
                     required
-                    className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    className="pt-3 border-0 text-[#bfff7f] text-xl font-semibold pb-2 w-full border-b-2 border-[#bfff7f] focus:outline-none focus:ring-0 focus:border-[#44bc3c] "
                     onChange={(e) => setStart(e.target.value)}
                 />
                 </div>
 
                 <div>
-                <p>期限日</p>
+                <p className="text-[#44bc3c] ">期限日</p>
                 <input
                     type="date"
                     name="期限日"
                     value={deadline_date}
                     required
-                    className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    className="pt-3 border-0 text-[#bfff7f] text-xl font-semibold pb-2 w-full border-b-2 border-[#bfff7f] focus:outline-none focus:ring-0 focus:border-[#44bc3c]"
                     onChange={(e) => setDeadline(e.target.value)}
                 />
                 </div>
 
-                <p className="flex items-center">
+                <label className="flex items-center">
                     <input
                         type="checkbox" 
-                        name="completion" 
+                        name="completion " 
+                        style={{accentColor: "#44bc3c"}}
                         checked={completion_flag}
-                        className="mr-2"
+                        className="mr-2 "
                         onChange={(e) => setCompletion(e.target.checked)}
                     />
-                    <span className="text-gray-600 text-xl font-semibold">済</span>
-                </p>
+                    <span className="text-[#44bc3c] text-xl font-semibold">済</span>
+                </label>
 
             </div>
         </div>
-        <footer className="flex justify-end border-t p-3 mt-5 flex-wrap">
+        <footer className="flex justify-end border-t border-[#bfff7f] p-3 mt-5 flex-wrap">
             <button
                 type="button"
                 className="bg-red-400 hover:bg-red-600 px-6 py-2 rounded text-white"
