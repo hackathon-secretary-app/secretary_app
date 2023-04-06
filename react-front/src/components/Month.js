@@ -17,9 +17,6 @@ export const Month = (props) => {
     console.log("実行")
     get_current_month()
   }, []);
-  if(flag) {
-    get_current_month()
-  }
   
   function get_current_month(){
     const baseURL = "http://localhost:8000/users/1/todos/1/calender";
