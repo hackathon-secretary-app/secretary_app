@@ -17,9 +17,12 @@ export const Month = (props) => {
     console.log("実行")
     get_current_month()
   }, []);
-  if (flag){
-    get_current_month()
-  }
+
+  useEffect(()=>{
+    if(flag) {
+      get_current_month()
+    }
+  }, [flag]);
 
   function get_current_month(){
     const baseURL = "http://localhost:8000/users/1/todos/1/calender";
@@ -41,7 +44,7 @@ export const Month = (props) => {
     })
   }
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5">
+    <div style={{backgroundColor:"white"}} className="flex-1 grid grid-cols-7 grid-rows-5">
       {month.map((row, i) => (
         <React.Fragment key={i}>
           {row.map((day, idx) => (

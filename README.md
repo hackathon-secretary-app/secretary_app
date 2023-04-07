@@ -1,5 +1,20 @@
 ## プログラムソースの利用方法
 ### React
+npmの導入
+
+パッケージインストール
+    npm install パッケージ名
+    
+必要なパッケージ
+    ・axios
+    ・dayjs
+    ・react-icons
+    ・tailwindcss
+    ・autoprefixer
+    ・postcss
+    ・react-router-dom
+
+
 
 ### Python
 #### setupについて

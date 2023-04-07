@@ -34,7 +34,7 @@ function App() {
       {state && <SideBar state={state} />}
       <>
         {showEventModal && <EventModal />}
-        <div className="h-screen flex flex-col">
+        <div className="h-screen carender flex flex-col">
           <CalendarHeader />
           <div className="flex flex-1">
             <Month month={currentMonth} />

@@ -33,24 +33,34 @@ export const CalendarHeader = () => {
     // })
   }
   return (
-    <div className="px-4 py-2 flex items-center">
-      <h1 className="mr-10 text-xl text-gray-500 fond-bold">Calendar</h1>
-      <button onClick={handleReset} className="border rounded py-2 px-4 mr-5">
-        Today
-      </button>
-      <button onClick={handlePrevMonth}>
-        <span className="cursor-pointer text-gray-600 mx-2">
-          <MdChevronLeft />
-        </span>
-      </button>
-      <button onClick={handelNextMonth}>
-        <span className="cursor-pointer text-gray-600 mx-2">
-          <MdChevronRight />
-        </span>
-      </button>
-      <h2 className="ml-4 text-xl text-gray-500 font-bold">
-        {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
-      </h2>
+    <div className="px-4 py-2 flex flex-wrap items-center">
+      <div className="flex-shrink-0">
+        <h1 style={{color:"#44bc3c"}} className="text-xl text-gray-500 font-bold">Calendar</h1>
+      </div>
+      <div className="flex-shrink-0 mt-3 sm:mt-0 ml-auto">
+        <button style={{
+          color:"#44bc3c",
+          border: "solid 2px #44bc3c" 
+         }} 
+         onClick={handleReset} className="border rounded py-2 px-4 mr-5">
+          Today
+        </button>
+      </div>
+      <div className="flex-shrink-0 mt-3 sm:mt-0 flex items-center">
+        <button onClick={handlePrevMonth}>
+          <span style={{color:"#44bc3c"}} className="cursor-pointer text-gray-600 mx-2">
+            <MdChevronLeft />
+          </span>
+        </button>
+        <h2 style={{color:"#44bc3c"}} className="text-xl text-gray-500 font-bold">
+          {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
+        </h2>
+        <button onClick={handelNextMonth}>
+          <span style={{color:"#44bc3c"}} className="cursor-pointer text-gray-600 mx-2">
+            <MdChevronRight />
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

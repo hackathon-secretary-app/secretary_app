@@ -11,7 +11,7 @@ export const Day = (props) => {
   // 今日の日付を色付けする
   const getCurrentDayClass = () => {
     return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
-      ? "bg-blue-600 text-white rounded-full w-7"
+      ? "bg-[#44bc3c] text-white rounded-full w-7"
       : "";
   };
 
@@ -44,23 +44,23 @@ export const Day = (props) => {
 
 
   return (
-    <div className="border-2 border-gray-300 flex flex-col">
+    <div className="flex flex-col border-2 border-[#44bc3c]">
       <div
-        className={`flex flex-col items-center ${
-          day.day() === 6 ? 'bg-blue-300' : day.day() === 0 ? 'bg-red-300' : 'bg-gray-300'
-        }`}
+        className={`flex flex-col items-center text-[#ffffff] ${
+          day.day() === 6 ? 'bg-blue-300' : day.day() === 0 ? 'bg-red-300' : 'bg-[#44bc3c]'
+        } border-b-2 `}
       >
         {/* 1行目に曜日を表示 */}
         {rowIdx === 0 && <p className="text-sm mt-1">{day.format("ddd")}</p>}
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         <p className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}>
           {day.format("DD")}
         </p>
       </div>
       <div
-        className="flex-1 cursor-pointer"
+        className="flex-1 cursor-pointer "
         onClick={() => {
           setDaySelected(day);
           setShowEventModal(true);
@@ -76,7 +76,7 @@ export const Day = (props) => {
           >
             <div className="flex items-center justify-between w-full">
   <div className="w-4/5">
-    <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-gray-600 text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left">
+    <p className="line-clamp-2 h-16 pt-1 pb-1 border-0 text-[#44bc3c] text-xl font-semibold overflow-hidden whitespace-normal break-all border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 text-left ">
       {evt.task_name}
     </p>
   </div>
@@ -85,6 +85,7 @@ export const Day = (props) => {
       <input
         id={`completion-${evt.id}`}
         type="checkbox"
+        style={{accentColor: "#44bc3c"}}
         name={`completion-${evt.id}`}
         checked={evt.completion_flag}
         required
